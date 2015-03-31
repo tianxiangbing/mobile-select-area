@@ -69,6 +69,7 @@ MobileSelectArea.prototype = {
 				var top = parseInt(dl.css('top') || 0) + diff;
 				dl.css('top', top);
 				start = end;
+				return false;
 			});
 			_this.scroller.children().bind('touchend', function(e) {
 				end = e.changedTouches[0].pageY;
@@ -98,6 +99,7 @@ MobileSelectArea.prototype = {
 				dl.css('top', mode * _this.mtop);
 				// _this.index = i + 1;
 				_this.format();
+				return false;
 			});
 			return false;
 		});
