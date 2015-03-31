@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Mobile-select-area by tianxiangbing</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Mobile-select-area</h1>
+        <h2>手机联动选择地区</h2>
+        <a href="https://github.com/tianxiangbing/mobile-select-area" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="mobile-select-area" class="anchor" href="#mobile-select-area" aria-hidden="true"><span class="octicon octicon-link"></span></a>mobile-select-area</h1>
+
+<p>手机联动选择地区</p>
+
+<h1>
+<a id="用法" class="anchor" href="#%E7%94%A8%E6%B3%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>用法</h1>
+
+<pre><code>##注：依赖于[dialog](https://github.com/tianxiangbing/dialog)
+    &lt;!DOCTYPE&gt;
+    &lt;html&gt;
+        &lt;head&gt;
+            &lt;title&gt;选择地区&lt;/title&gt;
+            &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"&gt;
+            &lt;link rel="stylesheet" type="text/css" href="../dist/mobile-select-area.css"&gt;
+            &lt;link rel="stylesheet" type="text/css" href="../dist/dialog.min.css"&gt;
+            &lt;script type="text/javascript" src="../dist/zepto.js"&gt;&lt;/script&gt;
+            &lt;script type="text/javascript" src="../dist/dialog.js"&gt;&lt;/script&gt;
+            &lt;script type="text/javascript" src="../dist/dialog-jquery.min.js"&gt;&lt;/script&gt;
+            &lt;script type="text/javascript" src="../dist/mobile-select-area.js"&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;input type="text" id="txt_area" value="浙江省 杭州市 滨江区"/&gt;
+            &lt;input type="hidden" id="hd_area" value="1,1,1"/&gt;
+            &lt;script&gt;
+            var selectArea = new MobileSelectArea();
+            selectArea.init({trigger:$('#txt_area'),value:$('#hd_area').val(),data:'data.json'});
+            &lt;/script&gt;
+        &lt;/body&gt;
+    &lt;/html&gt;
+</code></pre>
+
+<h1>
+<a id="属性及方法" class="anchor" href="#%E5%B1%9E%E6%80%A7%E5%8F%8A%E6%96%B9%E6%B3%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>属性及方法</h1>
+
+<h2>
+<a id="trigger" class="anchor" href="#trigger" aria-hidden="true"><span class="octicon octicon-link"></span></a>trigger:</h2>
+
+<pre><code>    触发弹窗的DOM元素 ，可以是input或其他
+</code></pre>
+
+<h2>
+<a id="value" class="anchor" href="#value" aria-hidden="true"><span class="octicon octicon-link"></span></a>value:</h2>
+
+<pre><code>    初始值,
+</code></pre>
+
+<h2>
+<a id="data" class="anchor" href="#data" aria-hidden="true"><span class="octicon octicon-link"></span></a>data:</h2>
+
+<pre><code>    当data为json对象时可以直接解析
+    当data为string发送ajax请求后返回json,格式如下：
+    {
+        "data": [{
+            "id": 1,
+            "name": "浙江省",
+            "child": [{
+                "id": "1",
+                "name": "杭州市",
+                "child": [{
+                    "id": 1,
+                    "name": "滨江区"
+                }]
+            }]
+        }, {
+            "id": 2,
+            "name": "江苏省",
+            "child": [{
+                "id": "1",
+                "name": "南京",
+                "child": [{
+                    "id": 1,
+                    "name": "解放区"
+                }]
+            }]
+        }, {
+            "id": 3,
+            "name": "湖北省"
+        }]
+    }
+</code></pre>
+
+<h1>
+<a id="callback" class="anchor" href="#callback" aria-hidden="true"><span class="octicon octicon-link"></span></a>callback:</h1>
+
+<pre><code>    选中后的回调，默认有填充trigger的value值，以及赋值它后面紧跟着的hidden的value值，以逗号分隔id，空格分隔文字
+</code></pre>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/tianxiangbing/mobile-select-area/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/tianxiangbing/mobile-select-area/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/tianxiangbing/mobile-select-area"></a> is maintained by <a href="https://github.com/tianxiangbing">tianxiangbing</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
