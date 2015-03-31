@@ -1,0 +1,21 @@
+﻿<!DOCTYPE>
+<html>
+	<head>
+		<title>选择地区</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" type="text/css" href="../dist/mobile-select-area.css">
+		<link rel="stylesheet" type="text/css" href="../dist/dialog.min.css">
+		<script type="text/javascript" src="../dist/zepto.js"></script>
+		<script type="text/javascript" src="../dist/dialog.js"></script>
+		<script type="text/javascript" src="../dist/dialog-jquery.min.js"></script>
+		<script type="text/javascript" src="../dist/mobile-select-area.js"></script>
+	</head>
+	<body>
+		<input type="text" id="txt_area" value="浙江省 杭州市 滨江区"/>
+		<input type="hidden" id="hd_area" value="1,1,1"/>
+		<script>
+		var selectArea = new MobileSelectArea();
+		selectArea.init({trigger:$('#txt_area'),value:$('#hd_area').val(),data:'data.json'});
+		</script>
+	</body>
+</html>
