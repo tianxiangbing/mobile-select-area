@@ -39,6 +39,9 @@ MobileSelectArea.prototype = {
 				type:'GET',
 				success:function(result){
 					_this.data =result.data;
+				},
+				accepts:{
+					json:"application/json, text/javascript, */*; q=0.01"
 				}
 			});
 		}
