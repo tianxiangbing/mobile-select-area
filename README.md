@@ -1,5 +1,6 @@
 # mobile-select-area
 手机联动选择地区
+例子见[DEMO](http://www.lovewebgames.com/jsmodule/mobile-select-area.html)  
 #用法
 	##注：依赖于[dialog](https://github.com/tianxiangbing/dialog)
 		<!DOCTYPE>
