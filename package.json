@@ -3,8 +3,10 @@
   "name": "mobile-select-area",
   "description": "选择地区",
   "version": "1.0.0",
+  "git": "https://github.com/tianxiangbing/mobile-select-area",
   "author": {
     "name": "田想兵",
+    "email": "55342775@qq.com",
     "url": "http://www.lovewebgames.com/jsmodule/mobile-select-area.html"
   },
   "devDependencies": {
