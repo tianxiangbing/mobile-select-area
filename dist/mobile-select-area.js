@@ -9,7 +9,7 @@ function MobileSelectArea() {
 	var rnd = Math.random().toString().replace('.', '');
 	this.id = 'scroller_' + rnd;
 	this.scroller;
-	this.data ;
+	this.data;
 	this.index = 0;
 	this.value = [0, 0, 0];
 	this.oldvalue;
@@ -33,15 +33,15 @@ MobileSelectArea.prototype = {
 			this.data = this.settings.data;
 		} else {
 			$.ajax({
-				dataType:'json',
-				cache:true,
-				url:this.settings.data,
-				type:'GET',
-				success:function(result){
-					_this.data =result.data;
+				dataType: 'json',
+				cache: true,
+				url: this.settings.data,
+				type: 'GET',
+				success: function(result) {
+					_this.data = result.data;
 				},
-				accepts:{
-					json:"application/json, text/javascript, */*; q=0.01"
+				accepts: {
+					json: "application/json, text/javascript, */*; q=0.01"
 				}
 			});
 		}
@@ -69,6 +69,9 @@ MobileSelectArea.prototype = {
 				end = e.changedTouches[0].pageY;
 				var diff = end - start;
 				var dl = $(e.target).parent();
+				if (dl[0].nodeName != "DL") {
+					return;
+				}
 				var top = parseInt(dl.css('top') || 0) + diff;
 				dl.css('top', top);
 				start = end;
@@ -78,6 +81,9 @@ MobileSelectArea.prototype = {
 				end = e.changedTouches[0].pageY;
 				var diff = end - start;
 				var dl = $(e.target).parent();
+				if (dl[0].nodeName != "DL") {
+					return;
+				}
 				var i = $(dl.parent()).index();
 				var top = parseInt(dl.css('top') || 0) + diff;
 				if (top > _this.mtop) {
@@ -98,10 +104,11 @@ MobileSelectArea.prototype = {
 					_this.value[j] = 0;
 					_this.text[j] = "";
 				}
+				if (!$(dl.children().get(index)).hasClass('focus')) {
+					_this.format();
+				}
 				$(dl.children().get(index)).addClass('focus').siblings().removeClass('focus');
 				dl.css('top', mode * _this.mtop);
-				// _this.index = i + 1;
-				_this.format();
 				return false;
 			});
 			return false;
