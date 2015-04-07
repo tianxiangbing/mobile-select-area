@@ -5,8 +5,18 @@
  * Time: 09:49:11
  * Contact: 55342775@qq.com
  */
-;(function($) {
-	window.MobileSelectArea = function() {
+;
+(function(root, factory) {
+	//amd
+	if (typeof define === 'function' && define.amd) {
+		define(['$','dialog'], factory);
+	} else if (typeof exports === 'object') { //umd
+		module.exports = factory();
+	} else {
+		root.MobileSelectArea = factory(window.Zepto || window.jQuery || $);
+	}
+})(this, function($, Dialog) {
+	var MobileSelectArea = function() {
 		var rnd = Math.random().toString().replace('.', '');
 		this.id = 'scroller_' + rnd;
 		this.scroller;
@@ -178,4 +188,5 @@
 			this.value = this.oldvalue.concat([]);
 		}
 	};
-})(window.Zepto || window.jQuery);
+	return MobileSelectArea;
+});
