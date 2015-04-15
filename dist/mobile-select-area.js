@@ -34,6 +34,7 @@
 			this.trigger = $(this.settings.trigger);
 			this.trigger.attr("readonly", "readonly");
 			this.value = (this.settings.value && this.settings.value.split(",")) || [0, 0, 0];
+			this.text = this.trigger.val().split(' ') || ['', '', ''];
 			this.oldvalue = this.value.concat([]);
 			this.getData();
 			this.bindEvent();
