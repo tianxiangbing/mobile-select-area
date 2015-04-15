@@ -9,7 +9,7 @@
 (function(root, factory) {
 	//amd
 	if (typeof define === 'function' && define.amd) {
-		define(['$','dialog'], factory);
+		define(['$', 'dialog'], factory);
 	} else if (typeof exports === 'object') { //umd
 		module.exports = factory();
 	} else {
@@ -34,8 +34,10 @@
 			this.trigger = $(this.settings.trigger);
 			this.trigger.attr("readonly", "readonly");
 			this.value = (this.settings.value && this.settings.value.split(",")) || [0, 0, 0];
-			this.text = this.trigger.val().split(' ') || ['', '', ''];
 			this.oldvalue = this.value.concat([]);
+			this.clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+			this.clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+			// $.alert(this.clientWidth)
 			this.getData();
 			this.bindEvent();
 		},
@@ -69,6 +71,9 @@
 						_this.cancel();
 					}
 					this.dispose();
+				}, {
+					clientHeight: _this.clientHeight,
+					clientWidth: _this.clientWidth
 				});
 				_this.scroller = $('#' + _this.id);
 				_this.format();
