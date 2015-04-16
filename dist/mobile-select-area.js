@@ -34,6 +34,7 @@
 			this.trigger = $(this.settings.trigger);
 			this.trigger.attr("readonly", "readonly");
 			this.value = (this.settings.value && this.settings.value.split(",")) || [0, 0, 0];
+			this.text = this.settings.text || this.trigger.val().split(' ') || ['', '', ''];
 			this.oldvalue = this.value.concat([]);
 			this.clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
 			this.clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
