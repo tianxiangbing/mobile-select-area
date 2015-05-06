@@ -1,3 +1,4 @@
+@import url(dialog.css);
 /*selectarea*/
 .ui-scroller{position: relative;height: 88px;width: 100%; min-width: 260px;font-size: 14px;font-weight: normal;}
 .ui-scroller>div{width: 33%;display: inline-block;position:relative;height:88px;overflow: hidden;box-sizing:border-box;}

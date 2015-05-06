@@ -6,7 +6,7 @@
 		<!DOCTYPE>
 		<html>
 			<head>
-				<title>选择地区</title>
+				<title>选择日期</title>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 				<link rel="stylesheet" type="text/css" href="../dist/mobile-select-area.css">
 				<link rel="stylesheet" type="text/css" href="../dist/dialog.min.css">
