@@ -34,13 +34,14 @@
 		init: function(settings) {
 			this.settings = $.extend({}, settings);
 			this.trigger = $(this.settings.trigger);
+			level = parseInt(this.settings.level);
+			this.level = level > 0 ? level : 3;
 			this.trigger.attr("readonly", "readonly");
 			this.value = (this.settings.value && this.settings.value.split(",")) || [0, 0, 0];
 			this.text = this.settings.text || this.trigger.val().split(' ') || ['', '', ''];
 			this.oldvalue = this.value.concat([]);
 			this.clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
 			this.clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
-			// $.alert(this.clientWidth)
 			this.getData();
 			this.bindEvent();
 		},
@@ -66,7 +67,11 @@
 		bindEvent: function() {
 			var _this = this;
 			this.trigger.tap(function(e) {
-				$.confirm('<div class="ui-scroller-mask"><div id="' + _this.id + '" class="ui-scroller"><div></div><div ></div><div></div><p></p></div></div>', null, function(t, c) {
+				var dlgContent = '';
+				for (var i = 0; i < _this.level; i++) {
+					dlgContent += '<div></div>';
+				};
+				$.confirm('<div class="ui-scroller-mask"><div id="' + _this.id + '" class="ui-scroller">' + dlgContent + '<p></p></div></div>', null, function(t, c) {
 					if (t == "yes") {
 						_this.submit()
 					}
