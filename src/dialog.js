@@ -1,5 +1,6 @@
 /*
  * Created with Sublime Text 2.
+ * license: http://www.lovewebgames.com/jsmodule/index.html
  * User: 田想兵
  * Date: 2015-03-16
  * Time: 20:27:54
@@ -60,8 +61,8 @@
 					settings.callback && settings.callback();
 				}, settings.timer);
 			}
-			alert.touch(alert.mask,function() {
-				alert.dispose();
+			alert.touch(alert.mask, function() {
+				alert.hide();
 				settings.callback && settings.callback();
 			});
 		}
@@ -95,6 +96,7 @@
 				target: html,
 				animate: true,
 				show: true,
+				fixed:true,
 				mask: true,
 				className: "ui-alert",
 				afterHide: function(c) {
@@ -116,27 +118,43 @@
 		}
 	};
 	/*alert*/
-	$.alert = function(content, button, callback, timer) {
-		$.Dialog({
-			content: content,
-			button: button,
-			timer: timer,
-			callback: callback,
-			zIndex: 100,
-			type: 'alert'
-		});
-	}
-	/*
-	buttons :[{yes:"确定"},{no:'取消'},{close:'关闭'}]
-	*/
-	$.confirm = function(content, buttons, callback,settings) {
-		$.Dialog($.extend({
-			content: content,
-			buttons: buttons,
-			callback: callback,
+	$.alert = function(content, button, callback, timer, settings) {
+			var options = {};
+			var defaults = {
+				zIndex: 100,
+				type: 'alert'
+			};
+			if (typeof content == 'object') {
+				options = $.extend(defaults, content);
+			} else {
+				options = $.extend(defaults, {
+					content: content,
+					button: button,
+					timer: timer,
+					callback: callback
+				});
+			}
+			$.Dialog($.extend(options, settings));
+		}
+		/*
+		buttons :[{yes:"确定"},{no:'取消'},{close:'关闭'}]
+		*/
+	$.confirm = function(content, buttons, callback, settings) {
+		var options = {};
+		var defaults = {
 			zIndex: 100,
 			type: 'confirm'
-		},settings));
+		};
+		if (typeof content == 'object') {
+			options = $.extend(defaults, content);
+		} else {
+			options = $.extend(defaults, {
+				content: content,
+				buttons: buttons,
+				callback: callback
+			});
+		}
+		$.Dialog($.extend(options, settings));
 	}
 	var Dialog = function() {
 		var rnd = Math.random().toString().replace('.', '');
@@ -151,7 +169,9 @@
 	Dialog.prototype = {
 		init: function(settings) {
 			var _this = this;
-			this.settings = $.extend({}, this.settings, settings);
+			this.settings = $.extend({
+				fixed: false//是否固定位置，
+			}, this.settings, settings);
 			if (this.settings.mask) {
 				this.mask = $('<div class="ui-dialog-mask"/>');
 				$('body').append(this.mask);
@@ -211,21 +231,24 @@
 					_this.show()
 				});
 			};
-			$(this.dialogContainer).delegate('.js-dialog-close', 'click', function() {
-				_this.hide();
-				return false;
-			})
-			$(window).resize(function() {
-				_this.setPosition();
-			});
-			$(window).scroll(function() {
-				_this.setPosition();
-			})
-			$(window).keydown(function(e) {
+			$(this.dialogContainer).on('click', '.js-dialog-close', function() {
+					_this.hide();
+					return false;
+				})
+				// $(window).resize(function() {
+				// 	_this.setPosition();
+				// });
+				// $(window).scroll(function() {
+				// 	_this.setPosition();
+				// })
+			$(document).keydown(function(e) {
 				if (e.keyCode === 27 && _this.showed) {
 					_this.hide();
 				}
 			});
+			$(this.dialogContainer).on('hide', function() {
+				_this.hide();
+			})
 		},
 		dispose: function() {
 			this.dialogContainer.remove();
@@ -289,9 +312,11 @@
 			var _this = this;
 			// $.alert(this.settings.clientWidth)
 			this.timer && clearInterval(this.timer);
-			this.timer = setInterval(function(){
-				_this.setPosition();
-			},1000);
+			if (this.settings.fixed) {
+				this.timer = setInterval(function() {
+					_this.setPosition();
+				}, 1000);
+			}
 			if (this.settings.animate) {
 				this.dialogContainer.addClass('zoomIn').removeClass('zoomOut').addClass('animated');
 			}
@@ -314,10 +339,14 @@
 				var mt = this.height / 2;
 				var left = clientWidth / 2 - ml;
 				var top = clientHeight / 2 - mt;
-				left = Math.max(0, left);
-				top = Math.max(0, top);
+				left = Math.floor(Math.max(0, left));
+				top = Math.floor(Math.max(0, top));
+				var position = 'absolute';
+				if(_this.settings.fixed){
+					position='fixed';
+				}
 				_this.dialogContainer.css({
-					position: "fixed",
+					position: position,
 					top: top,
 					left: left
 				});

@@ -30,7 +30,7 @@
 ##value:
 		初始值,
 ##data:
-		当data为json对象时可以直接解析
+		当data为json对象时可以直接解析,此时直接接收数组
 		当data为string发送ajax请求后返回json,格式如下：
 		{
 			"data": [{
