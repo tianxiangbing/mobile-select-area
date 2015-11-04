@@ -196,7 +196,7 @@
 				this.trigger.attr('data-value', this.value.join(','));
 			}
 			this.trigger.next(':hidden').val(this.value.join(','));
-			this.settings.callback && this.settings.callback(this.scroller);
+			this.settings.callback && this.settings.callback.call(this,this.scroller,this.text,this.value);
 		},
 		cancel: function() {
 			this.value = this.oldvalue.concat([]);
