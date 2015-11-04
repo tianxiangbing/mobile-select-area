@@ -29,6 +29,10 @@
 	触发弹窗的DOM元素 ，可以是input或其他
 ##value:
 	初始值,
+#level: `int`
+	级别数，默认是3级的
+#separator: `,`
+	id值分隔符
 ##data:
 	当data为json对象时可以直接解析,此时直接接收数组
 	当data为string发送ajax请求后返回json,格式如下：
