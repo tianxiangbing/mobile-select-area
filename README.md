@@ -33,6 +33,8 @@
 	级别数，默认是3级的
 #separator: `,`
 	id值分隔符
+#eventName:`tap|click`
+	触发事件名称，默认click,使用zeptojs的可以用tap事件
 ##data:
 	当data为json对象时可以直接解析,此时直接接收数组
 	当data为string发送ajax请求后返回json,格式如下：

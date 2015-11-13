@@ -32,7 +32,7 @@
 	};
 	MobileSelectArea.prototype = {
 		init: function(settings) {
-			this.settings = $.extend({}, settings);
+			this.settings = $.extend({eventName:'click'}, settings);
 			this.trigger = $(this.settings.trigger);
 			level = parseInt(this.settings.level);
 			this.level = level > 0 ? level : 3;
@@ -66,7 +66,7 @@
 		},
 		bindEvent: function() {
 			var _this = this;
-			this.trigger.tap(function(e) {
+			this.trigger[_this.settings.eventName](function(e) {
 				var dlgContent = '';
 				for (var i = 0; i < _this.level; i++) {
 					dlgContent += '<div></div>';
