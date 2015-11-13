@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>选择地区</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" type="text/css" href="../dist/mobile-select-area.css">
+		<script type="text/javascript" src="../src/require.js"></script>
+	</head>
+	<body>
+		<input type="text" id="txt_area" value="浙江省 杭州市 滨江区" data-value="12,124,3269"/>
+		<input type="hidden" id="hd_area" value="12,124,3269"/>
+		<script>
+		requirejs.config({
+			//By default load any module IDs from js/lib
+			baseUrl: '../dist',
+			paths: {
+				$: 'zepto',
+				dialog:'dialog',
+				'mobile-select-area':'mobile-select-area'
+			}
+		});
+		require(['mobile-select-area','$'], function(MobileSelectArea,$) {
+			var selectArea = new MobileSelectArea();
+			selectArea.init({trigger:'#txt_area',value:$('#hd_area').val(),data:'data.json'});
+		});
+		</script>
+	</body>
+</html>

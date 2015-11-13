@@ -80,8 +80,8 @@
 					}
 					this.dispose();
 				}, {
-					clientHeight: _this.clientHeight,
-					clientWidth: _this.clientWidth
+					width:320,
+					height:180
 				});
 				_this.scroller = $('#' + _this.id);
 				_this.format();
