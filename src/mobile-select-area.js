@@ -88,10 +88,10 @@
 				var start = 0,
 					end = 0
 				_this.scroller.children().bind('touchstart', function(e) {
-					start = e.changedTouches[0].pageY;
+					start = (e.changedTouches||e.originalEvent.changedTouches)[0].pageY;
 				});
 				_this.scroller.children().bind('touchmove', function(e) {
-					end = e.changedTouches[0].pageY;
+					end = (e.changedTouches||e.originalEvent.changedTouches)[0].pageY;
 					var diff = end - start;
 					var dl = $(e.target).parent();
 					if (dl[0].nodeName != "DL") {
@@ -103,7 +103,7 @@
 					return false;
 				});
 				_this.scroller.children().bind('touchend', function(e) {
-					end = e.changedTouches[0].pageY;
+					end = (e.changedTouches||e.originalEvent.changedTouches)[0].pageY;
 					var diff = end - start;
 					var dl = $(e.target).parent();
 					if (dl[0].nodeName != "DL") {
