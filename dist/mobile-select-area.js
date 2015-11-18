@@ -75,7 +75,7 @@
 					if (t == "yes") {
 						_this.submit()
 					}
-					if (t = 'no') {
+					if (t == 'no') {
 						_this.cancel();
 					}
 					this.dispose();
