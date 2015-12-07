@@ -34,6 +34,7 @@
 		init: function(settings) {
 			this.settings = $.extend({eventName:'click'}, settings);
 			this.trigger = $(this.settings.trigger);
+			this.settings.default==undefined ? this.default=1:this.default = 0 ;//0为空,1时默认选中第一项
 			level = parseInt(this.settings.level);
 			this.level = level > 0 ? level : 3;
 			this.trigger.attr("readonly", "readonly");
@@ -81,7 +82,7 @@
 					this.dispose();
 				}, {
 					width:320,
-					height:180
+					height:215
 				});
 				_this.scroller = $('#' + _this.id);
 				_this.format();
@@ -153,7 +154,7 @@
 			var str = '<dl><dd ref="0">——</dd>';
 			var focus = 0,
 				childData, top = _this.mtop;
-			if (_this.index !== 0 && _this.value[_this.index - 1] == "0") {
+			if (_this.index !== 0 && _this.value[_this.index - 1] == "0" && this.default==0) {
 				str = '<dl><dd ref="0" class="focus">——</dd>';
 				_this.value[_this.index] = 0;
 				_this.text[_this.index] = "";
@@ -163,7 +164,19 @@
 					str = '<dl><dd ref="0" class="focus">——</dd>';
 					focus = 0;
 				}
-				for (var j = 0, len = item.length; j < len; j++) {
+				if(item.length>0 && this.default==1){
+					str = '<dl>';
+					var pid = item[0].pid || 0;
+					var id = item[0].id || 0;
+					focus = item[0].id;
+					childData = item[0].child;
+					if(!_this.value[this.index ]){
+						_this.value[this.index ] = id;
+						_this.text[this.index] = item[0].name;
+					}
+					str += '<dd pid="' + pid + '" class="' + cls + '" ref="' + id + '">' + item[0].name + '</dd>';
+				}
+				for (var j = _this.default, len = item.length; j < len; j++) {
 					var pid = item[j].pid || 0;
 					var id = item[j].id || 0;
 					var cls = '';
@@ -171,7 +184,7 @@
 						cls = "focus";
 						focus = id;
 						childData = item[j].child;
-						top = _this.mtop * (-j);
+						top = _this.mtop * (-(j-_this.default));
 					};
 					str += '<dd pid="' + pid + '" class="' + cls + '" ref="' + id + '">' + item[j].name + '</dd>';
 				}

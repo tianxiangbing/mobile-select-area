@@ -25,6 +25,8 @@
 		</body>
 	</html>
 #属性及方法
+##default:`0||1`
+	0为空,true时默认选中第一项,默认1
 ##trigger:
 	触发弹窗的DOM元素 ，可以是input或其他
 ##value:
@@ -70,3 +72,5 @@
 	第一个是容器，第二个是选中后的text值，第三个参数是选中后的id。
 	并且this指向当前对象。
 	选中后的回调，默认有填充trigger的value值，以及赋值它后面紧跟着的hidden的value值，以逗号分隔id，空格分隔文字
+
+*1.7之后不再推荐使用zepto，请尽量使用jquery吧*

@@ -3,40 +3,41 @@
 	<head>
 		<title>选择地区</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-		<link rel="stylesheet" type="text/css" href="../dist/mobile-select-area.css">
+		<link rel="stylesheet" type="text/css" href="../src/mobile-select-area.css">
 		<script type="text/javascript" src="../dist/zepto.min.js"></script>
 		<script type="text/javascript" src="../src/dialog.js"></script>
 		<script type="text/javascript" src="../src/mobile-select-area.js"></script>
 	</head>
 	<body>
-		<input type="text" id="txt_area" value="浙江省 杭州市 滨江区" data-value="12,124,3269"/>
-		<input type="hidden" id="hd_area" value="12,124,3269"/>
+		<div>默认选中第一项:<input type="text" id="txt_area"/>
+		<input type="hidden" id="hd_area"/></div>
 		<script>
 		var selectArea = new MobileSelectArea();
 		selectArea.init({trigger:'#txt_area',value:$('#hd_area').val(),data:'data.json',eventName:'tap'});
 		</script>
-
-
-
-		<input type="text" id="txt_area2" value="浙江省 杭州市 滨江区" data-value="12,124,3269"/>
-
+		静态数据源：<input type="text" id="txt_area2" value="" />
 		<script>
-		var json =[{
-			"id": "2",
-			"name": "\u5317\u4eac\u5e02",
-			"child": [{
-				"id": "2288",
-				"name": "\u4e1c\u57ce\u533a"
-			}, {
-				"id": "2301",
-				"name": "\u5927\u5174\u533a"
-			}, {
-				"id": "2300",
-				"name": "\u660c\u5e73\u533a"
-			}]
-		}];
-		var selectArea2 = new MobileSelectArea();
-		selectArea2.init({trigger:'#txt_area2',value:$('#txt_area2').data('value'),data:json,eventName:'click'});
+				var json =[{
+					"id": "2",
+					"name": "\u5317\u4eac\u5e02",
+					"child": [{
+						"id": "2288",
+						"name": "\u4e1c\u57ce\u533a"
+					}, {
+						"id": "2301",
+						"name": "\u5927\u5174\u533a"
+					}, {
+						"id": "2300",
+						"name": "\u660c\u5e73\u533a"
+					}]
+				}];
+				var selectArea2 = new MobileSelectArea();
+				selectArea2.init({trigger:'#txt_area2',value:$('#txt_area2').data('value'),data:json,eventName:'click'});
+		</script>
+		<div>默认选中空:<input type="text" id="txt_area3"/></div>
+		<script>
+		var selectArea = new MobileSelectArea();
+		selectArea.init({trigger:'#txt_area3',data:'data.json',default:0});
 		</script>
 	</body>
 </html>

@@ -1,8 +1,8 @@
 @import url(dialog.css);
 /*selectarea*/
 .ui-dialog {box-sizing:border-box; }
-.ui-scroller{position: relative;height: 88px;width: 100%; min-width: 260px;font-size: 14px;font-weight: normal;}
-.ui-scroller>div{width: 33%;display: inline-block;position:relative;height:88px;overflow: hidden;box-sizing:border-box;}
+.ui-scroller{position: relative;height: 125px;width: 100%; min-width: 260px;font-size: 14px;font-weight: normal;}
+.ui-scroller>div{width: 33%;display: inline-block;position:relative;height: 125px;overflow: hidden;box-sizing:border-box;}
 .ui-scroller dl{position: absolute;width: 100%;margin: 0;top:30px;}
 .ui-scroller dd{padding;0;margin:0;overflow: hidden; text-overflow:ellipsis;width:100%;height: 30px;line-height: 30px;}
 .ui-scroller dd.focus{}
