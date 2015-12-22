@@ -14,7 +14,7 @@
 	}else if (typeof define === 'function' && define.cmd) {
 		define(function(require, exports, module) {
 			var $ = require("$");
-			var Dialog=require("dialog.js");
+			var Dialog=require("dialog");
 			return factory($,Dialog);
 		});
 	}  else if (typeof exports === 'object') { //umd
