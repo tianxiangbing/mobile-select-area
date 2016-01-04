@@ -31,7 +31,7 @@
 		this.index = 0;
 		this.value = [0, 0, 0];
 		this.oldvalue;
-		this.oldtext;
+		this.oldtext=[];
 		this.text = ['', '', ''];
 		this.level = 3;
 		this.mtop = 30;
@@ -50,6 +50,7 @@
 			this.value = (this.settings.value && this.settings.value.split(",")) || [0, 0, 0];
 			this.text = this.settings.text || this.trigger.val().split(' ') || ['', '', ''];
 			this.oldvalue = this.value.concat([]);
+			this.oldtext = this.text.concat([]);
 			this.clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
 			this.clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
 			// this.promise = this.getData();
