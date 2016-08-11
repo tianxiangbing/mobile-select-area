@@ -1,4 +1,4 @@
-# mobile-select-area
+﻿# mobile-select-area
 手机联动选择地区
 效果图如下：
 
@@ -25,7 +25,6 @@
 			<link rel="stylesheet" type="text/css" href="../dist/dialog.min.css">
 			<script type="text/javascript" src="../dist/zepto.js"></script>
 			<script type="text/javascript" src="../dist/dialog.js"></script>
-			<script type="text/javascript" src="../dist/dialog-jquery.min.js"></script>
 			<script type="text/javascript" src="../dist/mobile-select-area.js"></script>
 		</head>
 		<body>
