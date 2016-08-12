@@ -39,6 +39,8 @@
 		</body>
 	</html>
 #属性及方法
+##position:'bottom'
+	当这个值为bottom时，弹层固定显示在底部，不传时居中显示,默认居中.
 ##default:`0||1`
 	0为空,true时默认选中第一项,默认1
 ##trigger:
