@@ -93,7 +93,11 @@
 				}
 			}
 			action = '<table class="ui-dialog-action"><tr>' + btnstr + '</tr></table>';
-			html += action;
+			if(settings.position=="bottom"){
+				html=action+html;
+			}else{
+				html += action;
+			}
 			var options = $.extend({
 				target: html,
 				animate: true,
@@ -338,8 +342,8 @@
 				if (isNaN(this.width)) {
 					this.width = (this.dialogContainer.outerWidth && this.dialogContainer.outerWidth()) || this.dialogContainer.width();
 				}
-				var clientHeight = this.settings.clientHeight || document.documentElement.clientHeight || document.body.clientHeight;
-				var clientWidth = this.settings.clientWidth || document.documentElement.clientWidth || document.body.clientWidth;
+				var clientHeight = $(window).height();
+				var clientWidth = $(window).width();
 				var ml = this.width / 2;
 				var mt = this.height / 2;
 				var left = clientWidth / 2 - ml;
@@ -351,10 +355,16 @@
 				if (_this.settings.fixed) {
 					position = 'fixed';
 				}
+				var bottom = "auto";
+				if(_this.settings.position=="bottom"){
+					top="auto";
+					bottom=0;
+				}
 				_this.dialogContainer.css({
 					position: position,
 					top: top,
-					left: left
+					left: left,
+					bottom:bottom
 				});
 			}
 		}

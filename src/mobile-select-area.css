@@ -10,3 +10,9 @@
 .ui-scroller-mask{-webkit-mask: -webkit-gradient(linear,0% 30%,0% 0%,from(rgba(222,187,71,1)),to(rgba(36,142,36,0)));}
 .ui-scroller p{position: absolute;top:30px;height:30px;width: 100%;margin: 0;z-index: -1;border:1px solid #e2e2e2;border-left:none;border-right:none;}
 .ui-scroller .ui-dialog-action{margin-top: 10px;}
+.ui-dialog-bottom{
+	border-radius: 0;
+}
+.ui-dialog-bottom .ui-dialog-action .ui-confirm-close, .ui-dialog-action .ui-confirm-no{
+	border:none;
+}

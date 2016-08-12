@@ -8,6 +8,12 @@
 		<script type="text/javascript" src="../src/dialog.js"></script>
 		<script type="text/javascript" src="../src/mobile-select-area.js"></script>
 	</head>
+	<style type="text/css">
+		body>div{
+			line-height: 40px;
+			color:#666;
+		}
+	</style>
 	<body>
 		<div>默认选中第一项:<input type="text" id="txt_area"/>
 		<input type="hidden" id="hd_area"/></div>
@@ -38,6 +44,11 @@
 		<script>
 		var selectArea = new MobileSelectArea();
 		selectArea.init({trigger:'#txt_area3',data:'data.json',default:0});
+		</script>
+		<div>置底显示:<input type="text" id="txt_area4"/></div>
+		<script>
+		var selectArea = new MobileSelectArea();
+		selectArea.init({trigger:'#txt_area4',data:json,default:0,position:"bottom"});
 		</script>
 	</body>
 </html>

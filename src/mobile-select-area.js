@@ -86,7 +86,21 @@
 				for (var i = 0; i < _this.level; i++) {
 					dlgContent += '<div></div>';
 				};
-				$.confirm('<div class="ui-scroller-mask"><div id="' + _this.id + '" class="ui-scroller">' + dlgContent + '<p></p></div></div>', null, function(t, c) {
+				var settings,buttons;
+				if( _this.settings.position == "bottom"){
+					settings ={
+						position:"bottom",
+						width:"100%",
+						className:"ui-dialog-bottom",
+						animate:false
+					}
+					var buttons=[{
+							'no': '取消'
+						},{
+							'yes': '确定'
+						}];
+				}
+				$.confirm('<div class="ui-scroller-mask"><div id="' + _this.id + '" class="ui-scroller">' + dlgContent + '<p></p></div></div>', buttons, function(t, c) {
 					if (t == "yes") {
 						_this.submit()
 					}
@@ -94,10 +108,10 @@
 						_this.cancel();
 					}
 					this.dispose();
-				}, {
+				}, $.extend({
 					width: 320,
 					height: 215
-				});
+				},settings));
 				_this.scroller = $('#' + _this.id);
 				_this.getData().done(function() {
 					_this.format();

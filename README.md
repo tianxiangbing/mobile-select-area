@@ -4,6 +4,8 @@
 
 ![mobile-select-area](example/mobile-select-area.jpg)
 
+![mobile-select-area](example/mobile-select-area2.jpg)
+
 例子见[DEMO](http://www.lovewebgames.com/jsmodule/mobile-select-area.html)  
 
 
