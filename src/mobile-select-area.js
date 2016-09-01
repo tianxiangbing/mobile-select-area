@@ -11,13 +11,13 @@
 	//amd
 	if (typeof define === 'function' && define.amd) {
 		define(['$', 'dialog'], factory);
-	}else if (typeof define === 'function' && define.cmd) {
+	} else if (typeof define === 'function' && define.cmd) {
 		define(function(require, exports, module) {
 			var $ = require("$");
-			var Dialog=require("dialog");
-			return factory($,Dialog);
+			var Dialog = require("dialog");
+			return factory($, Dialog);
 		});
-	}  else if (typeof exports === 'object') { //umd
+	} else if (typeof exports === 'object') { //umd
 		module.exports = factory();
 	} else {
 		root.MobileSelectArea = factory(window.Zepto || window.jQuery || $);
@@ -31,7 +31,7 @@
 		this.index = 0;
 		this.value = [0, 0, 0];
 		this.oldvalue;
-		this.oldtext=[];
+		this.oldtext = [];
 		this.text = ['', '', ''];
 		this.level = 3;
 		this.mtop = 30;
@@ -86,19 +86,19 @@
 				for (var i = 0; i < _this.level; i++) {
 					dlgContent += '<div></div>';
 				};
-				var settings,buttons;
-				if( _this.settings.position == "bottom"){
-					settings ={
-						position:"bottom",
-						width:"100%",
-						className:"ui-dialog-bottom",
-						animate:false
+				var settings, buttons;
+				if (_this.settings.position == "bottom") {
+					settings = {
+						position: "bottom",
+						width: "100%",
+						className: "ui-dialog-bottom",
+						animate: false
 					}
-					var buttons=[{
-							'no': '取消'
-						},{
-							'yes': '确定'
-						}];
+					var buttons = [{
+						'no': '取消'
+					}, {
+						'yes': '确定'
+					}];
 				}
 				$.confirm('<div class="ui-scroller-mask"><div id="' + _this.id + '" class="ui-scroller">' + dlgContent + '<p></p></div></div>', buttons, function(t, c) {
 					if (t == "yes") {
@@ -111,7 +111,7 @@
 				}, $.extend({
 					width: 320,
 					height: 215
-				},settings));
+				}, settings));
 				_this.scroller = $('#' + _this.id);
 				_this.getData().done(function() {
 					_this.format();
@@ -156,11 +156,11 @@
 					}
 					_this.value[i] = $(dl.children().get(index)).attr('ref');
 					_this.value[i] == 0 ? _this.text[i] = "" : _this.text[i] = $(dl.children().get(index)).html();
-					for (var j = _this.level - 1; j > i; j--) {
-						_this.value[j] = 0;
-						_this.text[j] = "";
-					}
 					if (!$(dl.children().get(index)).hasClass('focus')) {
+						for (var j = _this.level - 1; j > i; j--) {
+							_this.value[j] = 0;
+							_this.text[j] = "";
+						}
 						_this.format();
 					}
 					$(dl.children().get(index)).addClass('focus').siblings().removeClass('focus');

@@ -24,19 +24,48 @@
 		静态数据源：<input type="text" id="txt_area2" value="" />
 		<script>
 				var json =[{
-					"id": "2",
-					"name": "\u5317\u4eac\u5e02",
-					"child": [{
-						"id": "2288",
-						"name": "\u4e1c\u57ce\u533a"
-					}, {
-						"id": "2301",
-						"name": "\u5927\u5174\u533a"
-					}, {
-						"id": "2300",
-						"name": "\u660c\u5e73\u533a"
-					}]
-				}];
+		"id": 1,
+		"name": "浙江省",
+		"child": [{
+			"id": "1",
+			"name": "杭州市",
+			"child": [{
+				"id": 1,
+				"name": "滨江区"
+			}, {
+				"id": 2,
+				"name": "西湖区"
+			}, {
+				"id": 2,
+				"name": "余杭区"
+			}, {
+				"id": 2,
+				"name": "留下区"
+			}]
+		}, {
+			"id": "2",
+			"name": "宁波市",
+			"child": []
+		}, {
+			"id": "3",
+			"name": "温州市",
+			"child": []
+		}]
+	}, {
+		"id": 2,
+		"name": "江苏省",
+		"child": [{
+			"id": "1",
+			"name": "南京",
+			"child": [{
+				"id": 1,
+				"name": "解放区"
+			}]
+		}]
+	}, {
+		"id": 3,
+		"name": "湖北省"
+	}];
 				var selectArea2 = new MobileSelectArea();
 				selectArea2.init({trigger:'#txt_area2',value:$('#txt_area2').data('value'),data:json,eventName:'click'});
 		</script>
