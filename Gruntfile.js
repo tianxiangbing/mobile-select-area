@@ -29,6 +29,10 @@ module.exports = function(grunt) {
 				dest:"dist",
 				ext:'.min.js'
 			}]
+		},
+		publish:{
+			src:['src/mobile-select-area.js'],
+			dest:'mobile-select-area.js'
 		}
 	};
 	config.cssmin = {

@@ -1,26 +1,28 @@
 /*
  * Created with Sublime Text 2.
- * license: http://www.lovewebgames.com/jsmodule/index.html
+ * github: https://github.com/tianxiangbing/mobile-select-area
+ * demo地址: http://www.lovewebgames.com/jsmodule/index.html
  * User: 田想兵
  * Date: 2015-03-31
  * Time: 09:49:11
  * Contact: 55342775@qq.com
+ * Desc: 确保代码最新及时修复bug，请去github上下载最新源码 https://github.com/tianxiangbing/mobile-select-area
  */
 ;
 (function(root, factory) {
 	//amd
 	if (typeof define === 'function' && define.amd) {
-		define(['$', 'dialog'], factory);
+		define([ "jquery",'dialog' ], factory );
 	} else if (typeof define === 'function' && define.cmd) {
 		define(function(require, exports, module) {
-			var $ = require("$");
+			var $ = require("jquery");
 			var Dialog = require("dialog");
 			return factory($, Dialog);
 		});
 	} else if (typeof exports === 'object') { //umd
 		module.exports = factory();
 	} else {
-		root.MobileSelectArea = factory(window.Zepto || window.jQuery || $);
+		root.MobileSelectArea = factory(jQuery);
 	}
 })(this, function($, Dialog) {
 	var MobileSelectArea = function() {

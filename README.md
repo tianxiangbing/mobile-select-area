@@ -8,6 +8,7 @@
 
 例子见[DEMO](http://www.lovewebgames.com/jsmodule/mobile-select-area.html)  
 
+	npm install mobile-select-area --save-dev
 
 #用法
 	node http.js

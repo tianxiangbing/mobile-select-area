@@ -2,8 +2,9 @@
   "family": "tianxiangbing",
   "name": "mobile-select-area",
   "description": "选择地区",
-  "version": "1.0.1",
+  "version": "3.0.2",
   "git": "https://github.com/tianxiangbing/mobile-select-area",
+  "main":"mobile-select-area.js",
   "author": {
     "name": "田想兵",
     "email": "55342775@qq.com",
@@ -14,6 +15,8 @@
     "grunt-contrib-copy": "^0.8.0",
     "grunt-contrib-cssmin": "^0.12.2",
     "grunt-contrib-uglify": "~0.4.0",
-    "grunt-contrib-watch": "^0.6.1"
+    "grunt-contrib-watch": "^0.6.1",
+    "jquery":"~1.9.1",
+    "jq-dialog":"~2.1.1"
   }
 }
