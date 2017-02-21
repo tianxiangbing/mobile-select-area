@@ -21,7 +21,7 @@
 		var selectArea = new MobileSelectArea();
 		selectArea.init({trigger:'#txt_area',value:$('#hd_area').val(),data:'data.json'});
 		</script>
-		静态数据源：<input type="text" id="txt_area2"  data-value="1,1,2" value="浙江省 杭州市 西湖区"/>
+		静态数据源：<input type="text" id="txt_area2"  data-value="1,1,2" value=""/>
 		<script>
 				var json =[{
 		"id": 1,
@@ -67,7 +67,8 @@
 		"name": "湖北省"
 	}];
 				var selectArea2 = new MobileSelectArea();
-				selectArea2.init({trigger:'#txt_area2',value:$('#txt_area2').data('value'),data:json,eventName:'click'});
+
+				selectArea2.init({trigger:'#txt_area2',value:$('#txt_area2').data('value'),text:['浙江省','杭州市','西湖区'],data:json,eventName:'click'});
 		</script>
 		<div>默认选中空:<input type="text" id="txt_area3"/></div>
 		<script>
@@ -78,6 +79,18 @@
 		<script>
 		var selectArea = new MobileSelectArea();
 		selectArea.init({trigger:'#txt_area4',data:json,default:0,position:"bottom"});
+		</script>
+		<div>ajax改数据源：<input type="text" id="txt_area5" value=""/><input type="button" id="btn1"/></div>
+		<script>
+		var selectArea4 = new MobileSelectArea();
+				selectArea4.init({trigger:'#txt_area5',value:$('#hd_area').val(),data:[]});
+		$('#btn1').click(function(){
+			$.get('data.json',function(result){
+				selectArea4.settings.data=result.data;
+				selectArea4.data=result.data;
+				console.log(selectArea4.data)
+			})
+		})
 		</script>
 	</body>
 </html>
