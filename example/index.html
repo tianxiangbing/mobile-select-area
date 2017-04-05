@@ -1,96 +1,100 @@
 ﻿<!DOCTYPE html>
 <html>
-	<head>
-		<title>选择地区</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-		<link rel="stylesheet" type="text/css" href="../src/mobile-select-area.css">
-		<script type="text/javascript" src="../src/jquery-1.11.2.js"></script>
-		<script type="text/javascript" src="../src/dialog.js"></script>
-		<script type="text/javascript" src="../src/mobile-select-area.js"></script>
-	</head>
-	<style type="text/css">
-		body>div{
-			line-height: 40px;
-			color:#666;
-		}
-	</style>
-	<body>
-		<div>默认选中第一项:<input type="text" id="txt_area"/>
-		<input type="hidden" id="hd_area" /></div>
-		<script>
-		var selectArea = new MobileSelectArea();
-		selectArea.init({trigger:'#txt_area',value:$('#hd_area').val(),data:'data.json'});
-		</script>
-		静态数据源：<input type="text" id="txt_area2"  data-value="1,1,2" value=""/>
-		<script>
-				var json =[{
-		"id": 1,
-		"name": "浙江省",
-		"child": [{
-			"id": "1",
-			"name": "杭州市",
-			"child": [{
-				"id": 1,
-				"name": "滨江区"
-			}, {
-				"id": 2,
-				"name": "西湖区"
-			}, {
-				"id": 3,
-				"name": "余杭区"
-			}, {
-				"id": 4,
-				"name": "留下区"
-			}]
-		}, {
-			"id": "2",
-			"name": "宁波市",
-			"child": []
-		}, {
-			"id": "3",
-			"name": "温州市",
-			"child": []
-		}]
-	}, {
-		"id": 2,
-		"name": "江苏省",
-		"child": [{
-			"id": "1",
-			"name": "南京",
-			"child": [{
-				"id": 1,
-				"name": "解放区"
-			}]
-		}]
-	}, {
-		"id": 3,
-		"name": "湖北省"
-	}];
-				var selectArea2 = new MobileSelectArea();
 
-				selectArea2.init({trigger:'#txt_area2',value:$('#txt_area2').data('value'),text:['浙江省','杭州市','西湖区'],data:json,eventName:'click'});
-		</script>
-		<div>默认选中空:<input type="text" id="txt_area3"/></div>
-		<script>
+<head>
+	<title>选择地区</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="stylesheet" type="text/css" href="../src/mobile-select-area.css">
+	<script type="text/javascript" src="../src/jquery-1.11.2.js"></script>
+	<script type="text/javascript" src="../src/dialog.js"></script>
+	<script type="text/javascript" src="../src/mobile-select-area.js"></script>
+</head>
+<style type="text/css">
+	body>div {
+		line-height: 40px;
+		color: #666;
+	}
+</style>
+
+<body>
+	<div>默认选中第一项:<input type="text" id="txt_area" />
+		<input type="hidden" id="hd_area" /></div>
+	<script>
 		var selectArea = new MobileSelectArea();
-		selectArea.init({trigger:'#txt_area3',data:'data.json',default:0});
-		</script>
-		<div>置底显示:<input type="text" id="txt_area4"/></div>
-		<script>
+		selectArea.init({ trigger: '#txt_area', value: $('#hd_area').val(), data: 'data.json' });
+	</script>
+	静态数据源：<input type="text" id="txt_area2" data-value="1,1,2" value="" />
+	<script>
+		var json = [{
+			"id": 1,
+			"name": "浙江省",
+			"child": [{
+				"id": "1",
+				"name": "杭州市",
+				"child": [{
+					"id": 1,
+					"name": "滨江区"
+				}, {
+					"id": 2,
+					"name": "西湖区"
+				}, {
+					"id": 3,
+					"name": "余杭区"
+				}, {
+					"id": 4,
+					"name": "留下区"
+				}]
+			}, {
+				"id": "2",
+				"name": "宁波市",
+				"child": []
+			}, {
+				"id": "3",
+				"name": "温州市",
+				"child": []
+			}]
+		}, {
+			"id": 2,
+			"name": "江苏省",
+			"child": [{
+				"id": "1",
+				"name": "南京",
+				"child": [{
+					"id": 1,
+					"name": "解放区"
+				}]
+			}]
+		}, {
+			"id": 3,
+			"name": "湖北省"
+		}];
+		var selectArea2 = new MobileSelectArea();
+
+		selectArea2.init({ trigger: '#txt_area2', value: $('#txt_area2').data('value'), text: ['浙江省', '杭州市', '西湖区'], data: json, eventName: 'click' });
+		selectArea2.show();
+	</script>
+	<div>默认选中空:<input type="text" id="txt_area3" /></div>
+	<script>
 		var selectArea = new MobileSelectArea();
-		selectArea.init({trigger:'#txt_area4',data:json,default:0,position:"bottom"});
-		</script>
-		<div>ajax改数据源：<input type="text" id="txt_area5" value=""/><input type="button" id="btn1"/></div>
-		<script>
+		selectArea.init({ trigger: '#txt_area3', data: 'data.json', default: 0 });
+	</script>
+	<div>置底显示:<input type="text" id="txt_area4" /></div>
+	<script>
+		var selectArea = new MobileSelectArea();
+		selectArea.init({ trigger: '#txt_area4', data: json, default: 0, position: "bottom" });
+	</script>
+	<div>ajax改数据源：<input type="text" id="txt_area5" value="" /><input type="button" value="请求ajax先" id="btn1" /></div>
+	<script>
 		var selectArea4 = new MobileSelectArea();
-				selectArea4.init({trigger:'#txt_area5',value:$('#hd_area').val(),data:[]});
-		$('#btn1').click(function(){
-			$.get('data.json',function(result){
-				selectArea4.settings.data=result.data;
-				selectArea4.data=result.data;
+		selectArea4.init({ trigger: '#txt_area5', value: $('#hd_area').val(), data: [] });
+		$('#btn1').click(function () {
+			$.get('data.json', function (result) {
+				selectArea4.settings.data = result.data;
+				selectArea4.data = result.data;
 				console.log(selectArea4.data)
 			})
 		})
-		</script>
-	</body>
+	</script>
+</body>
+
 </html>

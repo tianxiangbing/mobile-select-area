@@ -81,10 +81,9 @@
 			}
 			return dtd;
 		},
-		bindEvent: function() {
+		show:function(){
 			var _this = this;
-			this.trigger[_this.settings.eventName](function(e) {
-				var dlgContent = '';
+			var dlgContent = '';
 				for (var i = 0; i < _this.level; i++) {
 					dlgContent += '<div></div>';
 				};
@@ -118,6 +117,11 @@
 				_this.getData().done(function() {
 					_this.format();
 				});
+		},
+		bindEvent: function() {
+			var _this = this;
+			this.trigger[_this.settings.eventName](function(e) {
+				_this.show();
 				var start = 0,
 					end = 0
 				_this.scroller.children().bind('touchstart', function(e) {

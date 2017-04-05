@@ -10,14 +10,14 @@
 
 	npm install mobile-select-area --save-dev
 
-#用法
+# 用法
 	node http.js
 
 或者
 
 	打开start.bat
 
-##注：依赖于[dialog](https://github.com/tianxiangbing/dialog)
+## 注：依赖于[dialog](https://github.com/tianxiangbing/dialog)
 
 	<!DOCTYPE>
 	<html>
@@ -39,29 +39,29 @@
 			</script>
 		</body>
 	</html>
-#属性及方法
-##position:'bottom'
+# 属性及方法
+## position:'bottom'
 
 	当这个值为bottom时，弹层固定显示在底部，不传时居中显示,默认居中.
-##default:`0||1`
+## default:`0||1`
 
 	0为空,true时默认选中第一项,默认1
-##trigger:
+## trigger:
 
 	触发弹窗的DOM元素 ，可以是input或其他
-##value:
+## value:
 
 	初始值,
-#level: `int`
+# level: `int`
 
-	级别数，默认是3级的
-#separator: `,`
+	级别数，默认是3级的,省、市、区。
+# separator: `,`
 
 	id值分隔符
-#eventName:`tap|click`
+# eventName:`tap|click`
 
 	触发事件名称，默认click,使用zeptojs的可以用tap事件
-##data:
+## data:
 
 	当data为json对象时可以直接解析,此时直接接收数组
 	当data为string发送ajax请求后返回json,格式如下：
@@ -93,10 +93,13 @@
 			"name": "湖北省"
 		}]
 	}
-#callback:function(scroller,text,value)
+# show:function()
+
+	直接显示弹窗的方法
+	selectArea2.show();
+# callback:function(scroller,text,value)
 
 	第一个是容器，第二个是选中后的text值，第三个参数是选中后的id。
 	并且this指向当前对象。
 	选中后的回调，默认有填充trigger的value值，以及赋值它后面紧跟着的hidden的value值，以逗号分隔id，空格分隔文字
 
-*1.7之后不再推荐使用zepto，请尽量使用jquery吧*
