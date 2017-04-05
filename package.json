@@ -2,7 +2,7 @@
   "family": "tianxiangbing",
   "name": "mobile-select-area",
   "description": "选择地区",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "git": "https://github.com/tianxiangbing/mobile-select-area",
   "main":"mobile-select-area.js",
   "author": {
