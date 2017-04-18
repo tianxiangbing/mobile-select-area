@@ -9,12 +9,12 @@
  * Desc: 确保代码最新及时修复bug，请去github上下载最新源码 https://github.com/tianxiangbing/mobile-select-area
  */
 ;
-(function(root, factory) {
+(function (root, factory) {
 	//amd
 	if (typeof define === 'function' && define.amd) {
-		define([ "jquery",'dialog' ], factory );
+		define(["jquery", 'dialog'], factory);
 	} else if (typeof define === 'function' && define.cmd) {
-		define(function(require, exports, module) {
+		define(function (require, exports, module) {
 			var $ = require("jquery");
 			var Dialog = require("dialog");
 			return factory($, Dialog);
@@ -22,10 +22,10 @@
 	} else if (typeof exports === 'object') { //umd
 		module.exports = factory();
 	} else {
-		root.MobileSelectArea = factory(jQuery);
+		root.MobileSelectArea = factory(jQuery||Zepto);
 	}
-})(this, function($, Dialog) {
-	var MobileSelectArea = function() {
+})(this, function ($, Dialog) {
+	var MobileSelectArea = function () {
 		var rnd = Math.random().toString().replace('.', '');
 		this.id = 'scroller_' + rnd;
 		this.scroller;
@@ -40,7 +40,7 @@
 		this.separator = ' ';
 	};
 	MobileSelectArea.prototype = {
-		init: function(settings) {
+		init: function (settings) {
 			this.settings = $.extend({
 				eventName: 'click'
 			}, settings);
@@ -58,7 +58,7 @@
 			// this.promise = this.getData();
 			this.bindEvent();
 		},
-		getData: function() {
+		getData: function () {
 			var _this = this;
 			var dtd = $.Deferred();
 			if (typeof this.settings.data == "object") {
@@ -70,7 +70,7 @@
 					cache: true,
 					url: this.settings.data,
 					type: 'GET',
-					success: function(result) {
+					success: function (result) {
 						_this.data = result.data;
 						dtd.resolve();
 					},
@@ -81,108 +81,108 @@
 			}
 			return dtd;
 		},
-		show:function(){
+		show: function () {
 			var _this = this;
 			var dlgContent = '';
-				for (var i = 0; i < _this.level; i++) {
-					dlgContent += '<div></div>';
-				};
-				var settings, buttons;
-				if (_this.settings.position == "bottom") {
-					settings = {
-						position: "bottom",
-						width: "100%",
-						className: "ui-dialog-bottom",
-						animate: false
-					}
-					var buttons = [{
-						'no': '取消'
-					}, {
-						'yes': '确定'
-					}];
+			for (var i = 0; i < _this.level; i++) {
+				dlgContent += '<div></div>';
+			};
+			var settings, buttons;
+			if (_this.settings.position == "bottom") {
+				settings = {
+					position: "bottom",
+					width: "100%",
+					className: "ui-dialog-bottom",
+					animate: false
 				}
-				$.confirm('<div class="ui-scroller-mask"><div id="' + _this.id + '" class="ui-scroller">' + dlgContent + '<p></p></div></div>', buttons, function(t, c) {
-					if (t == "yes") {
-						_this.submit()
+				var buttons = [{
+					'no': '取消'
+				}, {
+					'yes': '确定'
+				}];
+			}
+			$.confirm('<div class="ui-scroller-mask"><div id="' + _this.id + '" class="ui-scroller">' + dlgContent + '<p></p></div></div>', buttons, function (t, c) {
+				if (t == "yes") {
+					_this.submit()
+				}
+				if (t == 'no') {
+					_this.cancel();
+				}
+				this.dispose();
+			}, $.extend({
+				width: 320,
+				height: 215
+			}, settings));
+			_this.scroller = $('#' + _this.id);
+			_this.getData().done(function () {
+				_this.format();
+			});
+			var start = 0,
+				end = 0
+			_this.scroller.children().bind('touchstart', function (e) {
+				start = (e.changedTouches || e.originalEvent.changedTouches)[0].pageY;
+			});
+			_this.scroller.children().bind('touchmove', function (e) {
+				end = (e.changedTouches || e.originalEvent.changedTouches)[0].pageY;
+				var diff = end - start;
+				var dl = $(e.target).parent();
+				if (dl[0].nodeName != "DL") {
+					return;
+				}
+				var top = parseInt(dl.css('top') || 0) + diff;
+				dl.css('top', top);
+				start = end;
+				return false;
+			});
+			_this.scroller.children().bind('touchend', function (e) {
+				end = (e.changedTouches || e.originalEvent.changedTouches)[0].pageY;
+				var diff = end - start;
+				var dl = $(e.target).parent();
+				if (dl[0].nodeName != "DL") {
+					return;
+				}
+				var i = $(dl.parent()).index();
+				var top = parseInt(dl.css('top') || 0) + diff;
+				if (top > _this.mtop) {
+					top = _this.mtop;
+				}
+				if (top < -$(dl).height() + 60) {
+					top = -$(dl).height() + 60;
+				}
+				var mod = top / _this.mtop;
+				var mode = Math.round(mod);
+				var index = Math.abs(mode) + 1;
+				if (mode == 1) {
+					index = 0;
+				}
+				_this.value[i] = $(dl.children().get(index)).attr('ref');
+				_this.value[i] == 0 ? _this.text[i] = "" : _this.text[i] = $(dl.children().get(index)).html();
+				if (!$(dl.children().get(index)).hasClass('focus')) {
+					for (var j = _this.level - 1; j > i; j--) {
+						_this.value[j] = 0;
+						_this.text[j] = "";
 					}
-					if (t == 'no') {
-						_this.cancel();
-					}
-					this.dispose();
-				}, $.extend({
-					width: 320,
-					height: 215
-				}, settings));
-				_this.scroller = $('#' + _this.id);
-				_this.getData().done(function() {
 					_this.format();
-				});
-		},
-		bindEvent: function() {
-			var _this = this;
-			this.trigger[_this.settings.eventName](function(e) {
-				_this.show();
-				var start = 0,
-					end = 0
-				_this.scroller.children().bind('touchstart', function(e) {
-					start = (e.changedTouches || e.originalEvent.changedTouches)[0].pageY;
-				});
-				_this.scroller.children().bind('touchmove', function(e) {
-					end = (e.changedTouches || e.originalEvent.changedTouches)[0].pageY;
-					var diff = end - start;
-					var dl = $(e.target).parent();
-					if (dl[0].nodeName != "DL") {
-						return;
-					}
-					var top = parseInt(dl.css('top') || 0) + diff;
-					dl.css('top', top);
-					start = end;
-					return false;
-				});
-				_this.scroller.children().bind('touchend', function(e) {
-					end = (e.changedTouches || e.originalEvent.changedTouches)[0].pageY;
-					var diff = end - start;
-					var dl = $(e.target).parent();
-					if (dl[0].nodeName != "DL") {
-						return;
-					}
-					var i = $(dl.parent()).index();
-					var top = parseInt(dl.css('top') || 0) + diff;
-					if (top > _this.mtop) {
-						top = _this.mtop;
-					}
-					if (top < -$(dl).height() + 60) {
-						top = -$(dl).height() + 60;
-					}
-					var mod = top / _this.mtop;
-					var mode = Math.round(mod);
-					var index = Math.abs(mode) + 1;
-					if (mode == 1) {
-						index = 0;
-					}
-					_this.value[i] = $(dl.children().get(index)).attr('ref');
-					_this.value[i] == 0 ? _this.text[i] = "" : _this.text[i] = $(dl.children().get(index)).html();
-					if (!$(dl.children().get(index)).hasClass('focus')) {
-						for (var j = _this.level - 1; j > i; j--) {
-							_this.value[j] = 0;
-							_this.text[j] = "";
-						}
-						_this.format();
-					}
-					$(dl.children().get(index)).addClass('focus').siblings().removeClass('focus');
-					dl.css('top', mode * _this.mtop);
-					return false;
-				});
+				}
+				$(dl.children().get(index)).addClass('focus').siblings().removeClass('focus');
+				dl.css('top', mode * _this.mtop);
 				return false;
 			});
 		},
-		format: function() {
+		bindEvent: function () {
+			var _this = this;
+			this.trigger[_this.settings.eventName](function (e) {
+				_this.show();
+				return false;
+			});
+		},
+		format: function () {
 			var _this = this;
 			var child = _this.scroller.children();
 			this.f(this.data);
 			console.log(_this.text)
 		},
-		f: function(data) {
+		f: function (data) {
 			var _this = this;
 			var item = data;
 			if (!item) {
@@ -238,7 +238,7 @@
 			}
 			_this.f(childData);
 		},
-		submit: function() {
+		submit: function () {
 			this.oldvalue = this.value.concat([]);
 			this.oldtext = this.text.concat([]);
 			if (this.trigger[0].nodeType == 1) {
@@ -249,7 +249,7 @@
 			this.trigger.next(':hidden').val(this.value.join(','));
 			this.settings.callback && this.settings.callback.call(this, this.scroller, this.text, this.value);
 		},
-		cancel: function() {
+		cancel: function () {
 			this.value = this.oldvalue.concat([]);
 			this.text = this.oldtext.concat([]);
 		}
