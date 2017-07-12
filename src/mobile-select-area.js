@@ -42,7 +42,8 @@
 	MobileSelectArea.prototype = {
 		init: function (settings) {
 			this.settings = $.extend({
-				eventName: 'click'
+				eventName: 'click',
+				autoHide:true
 			}, settings);
 			this.trigger = $(this.settings.trigger);
 			this.settings.default == undefined ? this.default = 1 : this.default = 0; //0为空,1时默认选中第一项
@@ -113,6 +114,11 @@
 				width: 320,
 				height: 215
 			}, settings));
+			if(_this.settings.autoHide){
+				$('.ui-dialog-mask').on('click',function(){
+					$('.ui-confirm-no').trigger('click');
+				})
+			}
 			_this.scroller = $('#' + _this.id);
 			_this.getData().done(function () {
 				_this.format();

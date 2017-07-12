@@ -103,3 +103,5 @@
 	并且this指向当前对象。
 	选中后的回调，默认有填充trigger的value值，以及赋值它后面紧跟着的hidden的value值，以逗号分隔id，空格分隔文字
 
+# autoHide : bool
+	点击遮罩层时退出窗口，与取消同样
