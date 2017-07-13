@@ -2,11 +2,15 @@
 手机联动选择地区
 效果图如下：
 
-![mobile-select-area](example/mobile-select-area.jpg)
+![mobile-select-area](http://tianxiangbing.github.io/mobile-select-area//mobile-select-area.jpg)
 
-![mobile-select-area](example/mobile-select-area2.jpg)
+![mobile-select-area](http://tianxiangbing.github.io/mobile-select-area//mobile-select-area2.jpg)
 
-例子见[DEMO](http://www.lovewebgames.com/jsmodule/mobile-select-area.html)  
+例子见[DEMO]
+(http://tianxiangbing.github.io/mobile-select-area/)  
+
+或
+(http://www.lovewebgames.com/jsmodule/mobile-select-area.html)  
 
 	npm install mobile-select-area --save-dev
 
