@@ -73,7 +73,11 @@
 		}];
 		var selectArea2 = new MobileSelectArea();
 
-		selectArea2.init({ trigger: '#txt_area2', value: $('#txt_area2').data('value'), text: ['浙江省', '杭州市', '西湖区'], data: json, eventName: 'click' });
+		selectArea2.init({ trigger: '#txt_area2', value: $('#txt_area2').data('value'), text: ['浙江省', '杭州市', '西湖区'], data: json, eventName: 'click' ,callback:function(){
+			alert('确定的回调')
+		},cancelCallback:function(){
+			alert('取消的回调')
+		}});
 		selectArea2.show();
 	</script>
 	<div>默认选中空:<input type="text" id="txt_area3" /></div>

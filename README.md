@@ -106,6 +106,7 @@
 	第一个是容器，第二个是选中后的text值，第三个参数是选中后的id。
 	并且this指向当前对象。
 	选中后的回调，默认有填充trigger的value值，以及赋值它后面紧跟着的hidden的value值，以逗号分隔id，空格分隔文字
-
+# cancelCallback(scroller,text,value)
+	点击取消时的回调，与`callback`参数相同，`this`指向当前对象
 # autoHide : bool
 	点击遮罩层时退出窗口，与取消同样,默认为true.

@@ -258,6 +258,7 @@
 		cancel: function () {
 			this.value = this.oldvalue.concat([]);
 			this.text = this.oldtext.concat([]);
+			this.settings.cancelCallback && this.settings.cancelCallback.call(this, this.scroller, this.text, this.value);
 		}
 	};
 	return MobileSelectArea;
